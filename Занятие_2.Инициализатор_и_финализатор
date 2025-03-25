@@ -12,6 +12,8 @@
 # sauce_out.show_my_sauce()
 
 
+
+
 # class Employee:
 #   @classmethod
 #   def validate(cls, name, age, salary, bonus):
@@ -61,6 +63,8 @@
 # print(employ.__dict__)
 # print(employ.total_salary)
 # employ.get_bonus
+
+
 
 
 class Reciple:
