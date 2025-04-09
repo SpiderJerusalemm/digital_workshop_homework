@@ -1,0 +1,87 @@
+class Fraction:
+  def __new__(cls, chislitel, znamenatel):
+    if not isinstance(chislitel, int) or not isinstance(znamenatel, int):
+      raise TypeError("int!")
+    if znamenatel == 0:
+      raise ValueError("zero division!")
+    return super().__new__(cls)
+
+    if chislitel < 0 or znamenatel < 0:
+      chislitel = -chislitel
+      znamenatel = -znamenatel
+
+  def __init__(self, chislitel, znamenatel):
+    self._chislitel = chislitel
+    self._znamenatel = znamenatel
+
+  def __repr__(self):
+    return f"{self._chislitel}/{self._znamenatel}"
+
+  @property
+  def chislitel(self):
+    return self._chislitel
+
+  @property
+  def znamenatel(self):
+    return self._znamenatel
+
+  @property
+  def value(self):
+    return round(self._chislitel / self._znamenatel,3 )
+
+  def __add__(self, other):
+    upper = self._chislitel * other.znamenatel + other.chislitel * self._znamenatel
+    lower = self._znamenatel * other.znamenatel
+    return Fraction(upper, lower)
+
+  def __sub__(self, other):
+    upper = self._chislitel * other.znamenatel - other.chislitel * self._znamenatel
+    lower = self._znamenatel * other.znamenatel
+    return Fraction(upper, lower)
+
+  def __mul__(self, other):
+    upper = self._chislitel * other.chislitel
+    lower = self._znamenatel * other.znamenatel
+    return Fraction(upper, lower)
+
+  def __truediv__(self, other):
+    upper = self._chislitel * other.znamenatel
+    lower = self._znamenatel * other.chislitel
+    return Fraction(upper, lower)
+
+  def __eq__(self, other) -> bool:
+    return (
+        self.chislitel == other.chislitel and
+        self.znamenatel == other.znamenatel
+    )
+  
+  def __hash__(self) -> int:
+    return hash((self.chislitel, self.znamenatel))
+
+  def __ne__(self, other) -> bool:
+    return (self.chislitel * other.znamenatel) != (other.chislitel * self.znamenatel)
+
+  def __le__(self, other) -> bool:
+    return (self.chislitel * other.znamenatel) < (other.chislitel * self.znamenatel)
+
+  def __le__(self, other) -> bool:
+    return (self.chislitel * other.znamenatel) <= (other.chislitel * self.znamenatel)
+
+  def __gt__(self, other) -> bool:
+    return (self.chislitel * other.znamenatel) > (other.chislitel * self.znamenatel)
+
+  def __ge__(self, other) -> bool:
+    return (self.chislitel * other.znamenatel) >= (other.chislitel * self.znamenatel)
+
+
+f1 = Fraction(10, -11)
+f2 = Fraction(11, -10)
+print(f1 + f2)
+print(f1 - f2)
+print(f1 * f2)
+print(f1 / f2)
+print(f1.value)
+f3 = f1/f2
+print(f3.value)
+print(hash(f1) == hash(f2))
+print(f1 > f2)
