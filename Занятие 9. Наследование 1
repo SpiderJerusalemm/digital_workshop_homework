@@ -1,0 +1,63 @@
+# import math
+
+# class Shape:
+#   name = "Shape"
+
+#   def __init__(self):
+#     pass
+
+# class Circle(Shape):
+#   def __init__(self, radius, fill):
+#     self.radius = radius
+#     self.fill = fill
+#     print("zashel v circle")
+    
+#   def area(self):
+#     return round(math.pi * self.radius ** 2, 2)
+  
+#   def perimeter(self):
+#     return round(2 * math.pi * self.radius, 2)
+
+# class Rectangle(Shape):
+#   def __init__(self, width,  height, fill):
+#     print("zashel v rectangle")
+#     self.width = width
+#     self.height = height
+#     self.fill = fill
+    
+#   def area(self):
+#     return round(self.width * self.height, 2)
+  
+#   def perimeter(self):
+#     return round(2 * (self.width + self.height) , 2)
+
+# circle = Circle(10, 'red')
+# rectangle = Rectangle(11, 12, 'blue')
+# print("Circle area:", circle.area())
+# print("Circle perimeter:", circle.perimeter())
+
+
+class Animal:
+  def __init__(self, sound):
+    self._sound = sound
+
+  def sound(self):
+    return self._sound
+
+
+class Dog(Animal):
+  def __init__(self):
+    super().__init__('dog says: гав-гав')
+
+class Cat(Animal):
+  def __init__(self):
+    super().__init__('cat says: мяу')
+
+class Cow(Animal):
+  def __init__(self):
+    super().__init__('cow says: мууу')
+
+
+animals = [Dog(), Cat(), Cow()]
+for animal in animals:
+    print(animal.sound())
