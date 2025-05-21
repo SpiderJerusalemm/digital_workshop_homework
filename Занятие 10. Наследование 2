@@ -1,0 +1,51 @@
+class Animal:
+    def speak(self):
+        return "издает звук"
+
+class MixinSwim:
+    def swim(self):
+        return "плавает"
+
+class MixinFly:
+    def fly(self):
+        return "летает"
+
+class Duck(Animal, MixinSwim, MixinFly):
+    def speak(self):
+        return "кря-кря"
+
+class Penguin(Animal, MixinSwim):
+    def speak(self):
+        return "буль-буль"
+
+birds = [Duck(), Penguin()]
+
+for bird in birds:
+    print(f"{bird.__class__.__name__}: {bird.speak()}")
+    print(f"{bird.__class__.__name__}: {bird.swim()}")
+    if hasattr(bird, "fly"):
+        print(f"{bird.__class__.__name__}: {bird.fly()}")
+
+
+class Writer:
+    def write(self):
+        return "пишет текст"
+
+class Painter:
+    def draw(self):
+        return "рисует картину"
+
+class CreativePerson(Writer, Painter):
+    def write(self):
+        return "творчески пишет стихотворение"
+    
+    def draw(self):
+        return "выразительно рисует пейзаж"
+
+people = [Writer(), Painter(), CreativePerson()]
+
+for p in people:
+    if hasattr(p, "write"):
+        print(p.write())
+    if hasattr(p, "draw"):
+        print(p.draw())
